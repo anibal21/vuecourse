@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src = "components/message.js"></script>
+    <script src = "components/computed-properties.js"></script>    
+    <script src = "components/methods.js"></script>        
+    <script src = "components/vmodel.js"></script>            
+    <script src = "components/vmodel-checkboxes.js"></script>                
+    <script src = "components/emit.js"></script>                    
+    <script src = "components/parent-data.js"></script>                        
+    <script src = "components/child-data.js"></script>                            
+    <script src = "components/child-methods.js"></script>                                
+    <script src = "components/login-form.js"></script>                                    
+</head>
+<body>
+
+    <div id="app">
+        <message></message>
+        <computed-properties></computed-properties>
+        <methods></methods>
+        <vmodel></vmodel>
+        <vmodel-checkboxes></vmodel-checkboxes>
+        <emit @show_car_brand="showCarBrandFromEmitCmp"></emit>
+        <parent-data></parent-data>
+        <child-data ref="childData"></child-data>
+        <child-methods ref="childMethod"></child-methods>        
+        <login-form></login-form>
+    </div>
+
+    <script >
+        new Vue({
+            el: '#app',
+            mounted () {
+                const cmpName =  this.$refs.childData.cmpName;
+                console.log(cmpName);
+
+                setTimeout( () => {
+                    this.$refs.childMethod.showCmpName();
+                },3000)
+            },
+            data () {
+                return {
+                    appName: 'Iniciando con Vuejs 2'
+                }
+            },
+            methods:{
+                showCarBrandFromEmitCmp (carBrand){
+                    alert(carBrand)
+                } 
+            }
+        })
+    </script>
+</body>
+</html>
